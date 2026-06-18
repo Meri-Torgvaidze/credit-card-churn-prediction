@@ -1,88 +1,86 @@
-# credit-card-churn-prediction
+# Predicting Bank Customer Churn and Identifying Key Driving Factors Using Machine Learning
 
-Predicting bank customer churn and identifying key driving factors using machine learning
+## Overview
 
+This project analyzes bank customers' demographic, financial, and behavioral data to predict customer churn and identify the key factors associated with customer attrition.
 
+Several machine learning classification models were developed, evaluated, and compared, including both baseline and hyperparameter-tuned versions:
 
-Bank Credit Card Churn Prediction
+* Logistic Regression
+* Decision Tree
+* Random Forest
+* XGBoost
+* Random Forest (Tuned)
+* XGBoost (Tuned)
 
-პროექტი აანალიზებს საბანკო კლიენტების ქცევით და დემოგრაფიულ
+Among all models, **XGBoost achieved the best overall performance**, reaching an Accuracy of **96.8%**, Precision of **90.4%**, Recall of **89.9%**, and an F1-Score of **90.1%**. Hyperparameter tuning produced only marginal changes, indicating that the original XGBoost model was already well optimized.
 
-მონაცემებს და პროგნოზირებს გადინების რისკს. შედარებულია ოთხი
+## Project Structure
 
-კლასიფიკაციის მოდელი: Logistic Regression, Decision Tree,
-
-Random Forest და XGBoost. საუკეთესო შედეგი მიღებულია XGBoost-ით
-
-(Accuracy: 96.8%, F1-Score: 90.1%).
-
-
-
-პროექტის სტრუქტურა
-
+```text
 bank-churn-prediction/
+│
+├── data_loading.ipynb
+├── exploratory_data_analysis.ipynb
+├── modeling.ipynb
+├── BankChurners.csv
+├── requirements.txt
+├── outputs/
+└── README.md
+```
 
-&#x09;data\_loading.ipynb
+## Installation and Execution
 
-&#x09;exploratory\_data\_analysis.ipynb
+Install the required packages:
 
-&#x09;modeling.ipynb
-
-&#x09;BankChurners.csv
-
-&#x09;requirements.txt
-
-&#x09;outputs/
-
-&#x09;README.md
-
-
-
-გაშვება
-
+```bash
 pip install -r requirements.txt
+```
 
+Launch Jupyter Notebook:
+
+```bash
 jupyter notebook
+```
 
-Notebook-ები უნდა გაეშვას თანმიმდევრობით:
+Run the notebooks in the following order:
 
-1\. data\_loading.ipynb
+1. data_loading.ipynb
+2. exploratory_data_analysis.ipynb
+3. modeling.ipynb
 
-2\. exploratory\_data\_analysis.ipynb
+## Model Performance
 
-3\. modeling.ipynb
+| Model                 | Accuracy | Precision | Recall | F1-Score |
+| --------------------- | -------- | --------- | ------ | -------- |
+| Logistic Regression   | 85.7%    | 54.0%     | 74.2%  | 62.5%    |
+| Decision Tree         | 92.0%    | 69.9%     | 87.7%  | 77.8%    |
+| Random Forest         | 95.4%    | 84.5%     | 87.1%  | 85.8%    |
+| XGBoost               | 96.8%    | 90.4%     | 89.9%  | 90.1%    |
+| Random Forest (Tuned) | 95.3%    | 84.4%     | 86.8%  | 85.6%    |
+| XGBoost (Tuned)       | 96.8%    | 90.1%     | 89.9%  | 90.0%    |
 
+## Key Findings
 
+* The dataset exhibited a class imbalance (16% churn rate), which was addressed using SMOTE.
+* Low transaction frequency (**Total_Trans_Ct**) was the strongest indicator of customer churn.
+* Lower transaction amounts (**Total_Trans_Amt**) were associated with a higher churn risk.
+* Low revolving balance (**Total_Revolving_Bal**) indicated lower customer engagement.
+* Customers with more banking products (**Total_Relationship_Count**) were generally more loyal.
+* A decline in transaction frequency over time (**Total_Ct_Chng_Q4_Q1**) served as an important early warning signal for churn.
 
-\## შედეგები
+## Technologies Used
 
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Imbalanced-learn
+* XGBoost
+* Jupyter Notebook
 
+## Dataset
 
-| მოდელი            | Accuracy | Precision | Recall | F1-Score |
-
-|---------------------|----------|-----------|--------|----------|
-
-| Logistic Regression | 82.7%    | 47.6%     | 76.9%  | 58.8%    |
-
-| Decision Tree       | 91.9%    | 69.8%     | 87.7%  | 77.8%    |
-
-| Random Forest       | 95.4%    | 84.5%     | 87.1%  | 85.8%    |
-
-| XGBoost             | 96.8%    | 90.4%     | 89.9%  | 90.1%    |
-
-
-
-\## ძირითადი მიგნებები
-
-\- 16%-იანი class imbalance გამოსწორდა SMOTE-ის გამოყენებით
-
-\- Total\_Trans\_Ct: ტრანზაქციების დაბალი სიხშირე churn-ის ყველაზე ძლიერი მაჩვენებელია
-
-\- Total\_Trans\_Amt: დაბალი დახარჯული თანხა უკავშირდება გადინების მაღალ რისკს
-
-\- Total\_Revolving\_Bal: დაბალი საბრუნავი ბალანსი მიუთითებს კლიენტის დაბალ ჩართულობაზე
-
-\- Total\_Relationship\_Count: მეტი საბანკო პროდუქტის მომხმარებელი კლიენტები უფრო ლოიალურები არიან
-
-\- Total\_Ct\_Chng\_Q4\_Q1: ტრანზაქციების სიხშირის შემცირება დროთა განმავლობაში გადინების მნიშვნელოვანი გამაფრთხილებელი სიგნალია
-
+The project uses the **Bank Customer Churn Dataset** obtained from Kaggle. The dataset contains approximately 10,000 customer records and includes demographic, financial, and behavioral features used to predict customer churn.
